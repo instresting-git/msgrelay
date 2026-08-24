@@ -6,7 +6,8 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python 3.9+](https://img.shields.io/badge/Python-3.9%2B-green.svg)]()
-[![Tests](https://img.shields.io/badge/tests-38%2F38%20passing-brightgreen.svg)](tests/)
+[![CI](https://github.com/instresting-git/msgrelay/actions/workflows/test.yml/badge.svg)](https://github.com/instresting-git/msgrelay/actions/workflows/test.yml)
+[![Buy me a coffee](https://img.shields.io/badge/Buy_me_a_coffee-FFDD00?logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/orkevin947t)
 
 MsgRelay 是給**獨立開發者 / Freelancer / 小團隊**的 WhatsApp 自動化集成層。它把散落在 WhatsApp 聊天裡的項目信息（會議時間、待辦事項、deadline、跟進事項）自動提取出來，變成結構化的日曆事件、任務清單和每日/每週報告。
 
@@ -118,7 +119,7 @@ python -m unittest discover -s tests -v
 如果你覺得 MsgRelay 有用：
 
 - 給 repo 一個 star（免費但很有用）
-- [在 GitHub Sponsors 上支持開發](https://github.com/sponsors/instresting-git)——支持直接決定新功能的速度
+- [請我喝杯咖啡](https://www.buymeacoffee.com/orkevin947t)——支持直接決定新功能的速度
 
 ## 免責聲明
 
