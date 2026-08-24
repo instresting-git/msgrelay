@@ -22,6 +22,9 @@ MsgRelay 是給**獨立開發者 / Freelancer / 小團隊**的 WhatsApp 自動�
 | **NLP 提取引擎** | 中 / 英 / 粵三語事件、任務、deadline 自動識別，附置信度評分 |
 | **LLM 增強** *(可選)* | OpenAI 兼容 API（DeepSeek/Ollama/OpenAI）語義理解，正則引擎的升級替代 |
 | **Auto-learn** | 從你的確認/忽略反饋中學習，個人化提取（few-shot + 模式懲罰） |
+| **Priority Learning** | 學習哪些發送者產生高優先級工作（LLM 或統計），事件/任務自動標優先級 |
+| **任務分組** | 任務自動歸類到項目組（關鍵詞匹配，可自定義） |
+| **任務追蹤器** | 本地任務生命週期管理（狀態/來源/筆記/統計），獨立於 Google Tasks |
 | **Google Calendar 同步** | 自動創建日曆事件（含提醒），智能去重 |
 | **Google Tasks 同步** | 自動創建任務（含截止日期），智能去重 |
 | **日報 / 週報** | 每日/每週消息統計 + 關鍵內容摘要，推送到 Discord |
@@ -83,6 +86,31 @@ python3 ~/.wacli/scripts/msgrelay_learn.py --stats
 
 **隱私**：LLM 功能默認關閉。開啟後，消息文本會發送給**你配置的 API 提供方**（用 Ollama 本地模型則數據不出機器）。詳見 [PRIVACY.md](docs/PRIVACY.md)。
 
+## Priority Learning + 任務管理
+
+三個模塊構成完整的任務判斷層（原 wacli-priority-learning / task-groups / task-tracker 系統的開源版）：
+
+```bash
+# 1. Priority learning：LLM 分析最近消息，學習 sender 優先級（建議每日 cron）
+python3 ~/.wacli/scripts/msgrelay_priority.py --learn --messages-file msgs.json
+# 無 LLM 時用統計 fallback：按任務產出量推斷
+python3 ~/.wacli/scripts/msgrelay_priority.py --learn-rules --messages-file msgs.json
+# 手動設置 / 查詢
+python3 ~/.wacli/scripts/msgrelay_priority.py --set "Alice" --priority-value high
+python3 ~/.wacli/scripts/msgrelay_priority.py --priority "Alice"
+
+# 2. 任務分組：自定義項目組 + 關鍵詞
+python3 ~/.wacli/scripts/msgrelay_groups.py --list
+python3 ~/.wacli/scripts/msgrelay_groups.py --add-group myproj --name "My Project" --keywords "myproj,xyz"
+
+# 3. 任務追蹤：本地狀態管理（Google Tasks 之外的另一份狀態源）
+python3 ~/.wacli/scripts/msgrelay_tracker.py --list --status open
+python3 ~/.wacli/scripts/msgrelay_tracker.py --complete <TASK_ID>
+python3 ~/.wacli/scripts/msgrelay_tracker.py --stats
+```
+
+提取管線會自動給每個事件/任務附加優先級和分組（寫入 Google Calendar 描述 / Google Tasks 備註），任務創建時同步寫入本地追蹤器。
+
 ## NLP 引擎示例
 
 ```bash
@@ -98,7 +126,7 @@ python3 src/wacli_nlp_extract.py
 
 ## 測試
 
-38 個測試覆蓋 NLP 多語言、LLM 提取、Auto-learn、多帳號配置、DB 層、端到端集成、報告構建。可在 Docker 或本地運行：
+52 個測試覆蓋 NLP 多語言、LLM 提取、Auto-learn、Priority Learning、任務分組/追蹤、多帳號配置、DB 層、端到端集成、報告構建。可在 Docker 或本地運行：
 
 ```bash
 docker build -t msgrelay-test . && docker run --rm msgrelay-test

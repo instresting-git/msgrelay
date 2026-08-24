@@ -106,6 +106,8 @@ def create_calendar_event(service, item: dict) -> str | None:
             "description": (
                 f"From WhatsApp chat: {source}\n"
                 f"Sender: {item.get('source_sender', 'Unknown')}\n"
+                f"Priority: {item.get('priority', 'medium')} "
+                f"(conf={item.get('priority_confidence', 0.3):.2f})\n"
                 f"---\n{item.get('source_text', '')[:200]}"
             ),
             "start": {

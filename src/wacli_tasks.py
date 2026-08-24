@@ -93,6 +93,9 @@ def create_task(service, task_list_id: str, item: dict) -> str | None:
             "title": title,
             "notes": (
                 f"From: {item.get('source_sender', 'Unknown')} ({source})\n"
+                f"Priority: {item.get('priority', 'medium')} "
+                f"(conf={item.get('priority_confidence', 0.3):.2f})\n"
+                f"Group: {item.get('group_key') or 'ungrouped'}\n"
                 f"---\n{item.get('source_text', '')[:200]}"
             ),
         }
@@ -142,6 +145,11 @@ def process_account(service, task_list_id: str, db_path: str,
             if task_id:
                 created += 1
                 print(f"  ✅ Created: {item['title'][:60]}")
+                # Local lifecycle tracking (group + status), independent of Google
+                from msgrelay_tracker import add_task
+                add_task(item["title"], item.get("group_key"),
+                         msg.get("chat", ""), msg.get("sender", ""),
+                         msg.get("text", ""))
 
             processed.setdefault(account_name, {}).setdefault("task_msg_ids", {})[msg_id] = True
 

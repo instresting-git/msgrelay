@@ -18,17 +18,19 @@ from __future__ import annotations
 from wacli_nlp_extract import analyze_message
 from msgrelay_llm import llm_extract, merge_with_rules, get_llm_config
 from msgrelay_learn import apply_pattern_penalties, get_few_shot_examples
+from msgrelay_priority import get_sender_priority
+from msgrelay_groups import classify_task
 
 
 def extract_all(messages: list[dict]) -> dict[str, list[dict]]:
     """
     Extract structured items from a list of messages.
 
-    Args:
-        messages: [{"msg_id","text","sender","chat","ts","from_me","media_type"}]
+    Pipeline: rules → optional LLM merge → learned penalties → enrichment
+    (sender priority + task grouping).
 
     Returns:
-        {msg_id: [item dicts]} — same shape as analyze_message output.
+        {msg_id: [item dicts]} — items include priority / group_key.
     """
     if not messages:
         return {}
@@ -57,6 +59,16 @@ def extract_all(messages: list[dict]) -> dict[str, list[dict]]:
     # 3) Learned pattern penalties (rules correction)
     for m in messages:
         result[m["msg_id"]] = apply_pattern_penalties(result.get(m["msg_id"], []), m["text"])
+
+    # 4) Enrichment: sender priority + task grouping
+    for m in messages:
+        sender = m.get("sender", "")
+        pr = get_sender_priority(sender)
+        for it in result.get(m["msg_id"], []):
+            it["priority"] = pr["priority"]
+            it["priority_confidence"] = pr["confidence"]
+            if it["type"] == "task":
+                it["group_key"] = classify_task(it.get("title", ""), m.get("text", ""))
 
     return result
 
