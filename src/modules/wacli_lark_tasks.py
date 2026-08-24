@@ -3,6 +3,8 @@
 Lark (Feishu International) Tasks integration for wacli.
 Reads extracted tasks from NLP engine and creates Lark Tasks.
 """
+from __future__ import annotations
+
 import os
 import sys
 import json
@@ -25,7 +27,7 @@ TASK_BASE = f"{LARK_BASE}/task/v2"  # v2 is the working version
 AUTH_URL = f"{LARK_BASE}/auth/v3/tenant_access_token/internal"
 
 # Target user (for task assignment)
-LARK_USER_ID = os.environ.get("CHATFLOW_LARK_USER_ID", "") or _load_secrets().get("lark_user_id", "")
+LARK_USER_ID = os.environ.get("MSGRELAY_LARK_USER_ID", "") or _load_secrets().get("lark_user_id", "")
 
 # Token cache
 _token_cache = {"token": None, "expires_at": 0}

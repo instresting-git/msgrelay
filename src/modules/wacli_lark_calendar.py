@@ -3,6 +3,8 @@
 Lark (Feishu International) Calendar integration for wacli.
 Reads extracted events from NLP engine and creates events on Lark primary calendar.
 """
+from __future__ import annotations
+
 import os
 import sys
 import json
@@ -23,7 +25,7 @@ from wacli_nlp_extract import get_new_messages, analyze_message
 LARK_BASE = "https://open.larksuite.com/open-apis"
 AUTH_URL = f"{LARK_BASE}/auth/v3/tenant_access_token/internal"
 # Target user (for calendar event attendees)
-LARK_USER_ID = os.environ.get("CHATFLOW_LARK_USER_ID", "") or _load_secrets().get("lark_user_id", "")
+LARK_USER_ID = os.environ.get("MSGRELAY_LARK_USER_ID", "") or _load_secrets().get("lark_user_id", "")
 CALENDAR_ID = "primary"  # Use primary calendar directly
 
 # Token cache

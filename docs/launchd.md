@@ -1,10 +1,10 @@
 # macOS 排程（launchd）
 
-ChatFlow 在 macOS 上建議用 launchd 代替 cron（macOS 對 cron 支持不佳）。
+MsgRelay 在 macOS 上建議用 launchd 代替 cron（macOS 對 cron 支持不佳）。
 
 ## 1. 同步任務（每 10 分鐘）
 
-`~/Library/LaunchAgents/com.chatflow.sync.plist`：
+`~/Library/LaunchAgents/com.msgrelay.sync.plist`：
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -13,7 +13,7 @@ ChatFlow 在 macOS 上建議用 launchd 代替 cron（macOS 對 cron 支持不�
 <plist version="1.0">
 <dict>
     <key>Label</key>
-    <string>com.chatflow.sync</string>
+    <string>com.msgrelay.sync</string>
     <key>ProgramArguments</key>
     <array>
         <string>/bin/bash</string>
@@ -37,19 +37,19 @@ ChatFlow 在 macOS 上建議用 launchd 代替 cron（macOS 對 cron 支持不�
 ## 2. 加載
 
 ```bash
-launchctl load ~/Library/LaunchAgents/com.chatflow.sync.plist
-launchctl start com.chatflow.sync   # 立即測試
+launchctl load ~/Library/LaunchAgents/com.msgrelay.sync.plist
+launchctl start com.msgrelay.sync   # 立即測試
 ```
 
 ## 3. 日曆/任務同步（每天 09:30）
 
-`~/Library/LaunchAgents/com.chatflow.pipeline.plist`：
+`~/Library/LaunchAgents/com.msgrelay.pipeline.plist`：
 
 ```xml
 <plist version="1.0">
 <dict>
     <key>Label</key>
-    <string>com.chatflow.pipeline</string>
+    <string>com.msgrelay.pipeline</string>
     <key>ProgramArguments</key>
     <array>
         <string>/bin/bash</string>
@@ -74,10 +74,10 @@ launchctl start com.chatflow.sync   # 立即測試
 
 ## 4. 日報（每天 18:00）+ 清理（每天 03:00）
 
-同理創建 `com.chatflow.reports.plist`（`StartCalendarInterval` 18:00，跑 `wacli_reports.py --mode daily`）和 `com.chatflow.cleanup.plist`（03:00，跑 `bash ~/.wacli/scripts/cleanup.sh`）。
+同理創建 `com.msgrelay.reports.plist`（`StartCalendarInterval` 18:00，跑 `wacli_reports.py --mode daily`）和 `com.msgrelay.cleanup.plist`（03:00，跑 `bash ~/.wacli/scripts/cleanup.sh`）。
 
 ## 5. 常見問題
 
 - **launchd 環境沒有 PATH**：腳本裡用絕對路徑（`~/bin/wacli`、`/usr/bin/python3`），或在 `ProgramArguments` 用 `bash -lc` 加載 shell 環境
 - **日誌**：所有輸出寫到 `~/.wacli/logs/`，排查問題先看這裡
-- **卸載**：`launchctl unload ~/Library/LaunchAgents/com.chatflow.xxx.plist`
+- **卸載**：`launchctl unload ~/Library/LaunchAgents/com.msgrelay.xxx.plist`

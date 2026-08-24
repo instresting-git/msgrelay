@@ -15,7 +15,7 @@ from wacli_config import _load_secrets
 LARK_BASE = "https://open.larksuite.com/open-apis"
 AUTH_URL = f"{LARK_BASE}/auth/v3/tenant_access_token/internal"
 TASK_BASE = f"{LARK_BASE}/task/v2"
-LARK_USER_ID = os.environ.get("CHATFLOW_LARK_USER_ID", "") or _load_secrets().get("lark_user_id", "")
+LARK_USER_ID = os.environ.get("MSGRELAY_LARK_USER_ID", "") or _load_secrets().get("lark_user_id", "")
 CALENDAR_ID = "primary"
 TOKEN_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "lark_user_token.json")
 TOKEN_LOCK_FILE = TOKEN_FILE + ".lock"

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Shared configuration for ChatFlow (WhatsApp → automation workflows).
+Shared configuration for MsgRelay (WhatsApp → automation workflows).
 
 Design principles:
 - Works with any number of wacli accounts (read from ~/.wacli/config.yaml).
@@ -8,16 +8,18 @@ Design principles:
 - Every user-specific value (timezone, email, phone labels) is configurable.
 
 Environment overrides (optional):
-    CHATFLOW_HOME     — base dir for reports/processed state (default: ~/.wacli)
-    CHATFLOW_TZ       — timezone for calendar events (default: Asia/Hong_Kong)
+    MSGRELAY_HOME     — base dir for reports/processed state (default: ~/.wacli)
+    MSGRELAY_TZ       — timezone for calendar events (default: Asia/Hong_Kong)
 """
+from __future__ import annotations
+
 import os
 import json
 import sys
 import yaml
 
 # ── Paths ─────────────────────────────────────────────────────────
-BASE_DIR = os.environ.get("CHATFLOW_HOME", os.path.expanduser("~/.wacli"))
+BASE_DIR = os.environ.get("MSGRELAY_HOME", os.path.expanduser("~/.wacli"))
 SCRIPTS_DIR = os.path.join(BASE_DIR, "scripts")
 REPORTS_DIR = os.path.join(BASE_DIR, "reports")
 PROCESSED_FILE = os.path.join(SCRIPTS_DIR, "wacli_processed.json")
@@ -25,12 +27,12 @@ TOKEN_FILE = os.path.join(SCRIPTS_DIR, "google_token.json")
 SECRETS_FILE = os.path.join(SCRIPTS_DIR, "wacli_secrets.json")
 
 # ── Timezone (configurable) ───────────────────────────────────────
-TIMEZONE = os.environ.get("CHATFLOW_TZ", "Asia/Hong_Kong")
+TIMEZONE = os.environ.get("MSGRELAY_TZ", "Asia/Hong_Kong")
 
 # ── Branding (used in calendar event prefix / report footers) ─────
-PRODUCT_NAME = "ChatFlow"
+PRODUCT_NAME = "MsgRelay"
 EVENT_PREFIX = "[WA]"
-REPORT_FOOTER = "ChatFlow · WhatsApp automation"
+REPORT_FOOTER = "MsgRelay · WhatsApp automation"
 
 # ── Email config (non-sensitive defaults; override in secrets) ────
 SMTP_HOST = "smtp-mail.outlook.com"
@@ -115,7 +117,7 @@ def get_google_credentials() -> dict:
     return {
         "installed": {
             "client_id": client_id,
-            "project_id": "chatflow-integration",
+            "project_id": "msgrelay-integration",
             "auth_uri": "https://accounts.google.com/o/oauth2/auth",
             "token_uri": "https://oauth2.googleapis.com/token",
             "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",

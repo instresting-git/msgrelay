@@ -4,6 +4,8 @@ NLP extraction engine for WhatsApp messages.
 Detects calendar events, tasks/action items, and deadlines from message text.
 Supports Chinese (Traditional/Simplified), English, and Cantonese.
 """
+from __future__ import annotations
+
 import re
 import sqlite3
 from datetime import datetime, timedelta

@@ -1,6 +1,6 @@
-# Contributing to ChatFlow
+# Contributing to MsgRelay
 
-感謝你有興趣改進 ChatFlow！這個項目的路線圖完全由社區需求驅動。
+感謝你有興趣改進 MsgRelay！這個項目的路線圖完全由社區需求驅動。
 
 ## 🐛 報告 Bug
 
@@ -19,8 +19,8 @@
 
 ```bash
 # 1. Fork 並克隆
-git clone https://github.com/KelvinOr/chatflow.git
-cd chatflow
+git clone https://github.com/KelvinOr/msgrelay.git
+cd msgrelay
 
 # 2. 安裝依賴
 pip install -r requirements.txt
@@ -57,4 +57,4 @@ def test_your_new_feature(self):
 ## ⚠️ 注意
 
 - 不要提交任何真實的 `wacli_secrets.json`、token 或個人數據
-- 涉及 WhatsApp 協議層面的改動請先討論——那是 wacli 的領域，ChatFlow 只做數據處理
+- 涉及 WhatsApp 協議層面的改動請先討論——那是 wacli 的領域，MsgRelay 只做數據處理

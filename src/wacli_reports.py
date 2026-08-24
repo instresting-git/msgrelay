@@ -3,6 +3,8 @@
 Discord webhook report generator for wacli WhatsApp data.
 Generates daily and weekly summary reports and sends to Discord webhook.
 """
+from __future__ import annotations
+
 import os
 import sys
 import json

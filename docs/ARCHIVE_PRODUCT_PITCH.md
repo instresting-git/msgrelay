@@ -1,4 +1,4 @@
-# ChatFlow — 產品銷售頁文案
+# MsgRelay — 產品銷售頁文案
 
 > 一次性源碼買斷 · 無訂閱 · 無後續費用 · 數據 100% 本地
 
@@ -10,7 +10,7 @@
 > 你的 WhatsApp，變成你的項目管理系統
 
 **副標題**
-> ChatFlow 自動從聊天中提取會議、任務和截止日期，同步到 Google Calendar / Tasks / 飛書——獨立開發者的消息不再「看過就丟」。
+> MsgRelay 自動從聊天中提取會議、任務和截止日期，同步到 Google Calendar / Tasks / 飛書——獨立開發者的消息不再「看過就丟」。
 
 ---
 
@@ -23,7 +23,7 @@
 
 ## 解決方案
 
-ChatFlow 監聽你的 WhatsApp 消息，用三語 NLP 引擎自動識別：
+MsgRelay 監聽你的 WhatsApp 消息，用三語 NLP 引擎自動識別：
 
 - 📅 「聽日下晝 3 點開會傾 project 進度」→ Google Calendar 事件（帶提醒）
 - ✅ 「記得跟進個 client 個 case」→ Google Tasks 任務
@@ -59,10 +59,10 @@ ChatFlow 監聽你的 WhatsApp 消息，用三語 NLP 引擎自動識別：
 ## 常見問題
 
 **Q: 我會被封號嗎？**
-A: ChatFlow 使用 WhatsApp Web 非官方協議（whatsmeow），理論上存在帳號受限風險。建議使用次要號碼或接受風險。這是所有同類工具（whatsapp-web.js 等）的共同限制。
+A: MsgRelay 使用 WhatsApp Web 非官方協議（whatsmeow），理論上存在帳號受限風險。建議使用次要號碼或接受風險。這是所有同類工具（whatsapp-web.js 等）的共同限制。
 
 **Q: 我的數據會上傳到哪裡？**
-A: 哪裡都不去。所有數據存儲在你自己機器上的 SQLite，ChatFlow 沒有任何雲端服務器。
+A: 哪裡都不去。所有數據存儲在你自己機器上的 SQLite，MsgRelay 沒有任何雲端服務器。
 
 **Q: 賣了之後有更新嗎？**
 A: 源碼買斷模式：你拿到的是當前版本的完整源碼。如需定制（新集成、新語言），可另行聯繫。

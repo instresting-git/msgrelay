@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2026 ChatFlow contributors
+Copyright (c) 2026 MsgRelay contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -33,6 +33,6 @@ its own license:
 - google-auth / google-auth-oauthlib — Apache License 2.0
 - requests / PyYAML — Apache License 2.0 / MIT License
 
-ChatFlow itself is not affiliated with WhatsApp, Meta Platforms, Google, Lark,
+MsgRelay itself is not affiliated with WhatsApp, Meta Platforms, Google, Lark,
 or Discord. "WhatsApp" is a trademark of Meta Platforms, Inc.; other product
 names are trademarks of their respective owners.

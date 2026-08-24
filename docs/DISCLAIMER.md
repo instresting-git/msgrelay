@@ -1,4 +1,4 @@
-# ChatFlow — 免責聲明（Disclaimer）
+# MsgRelay — 免責聲明（Disclaimer）
 
 生效日期：2026 年
 
@@ -6,7 +6,7 @@
 
 ## 非官方工具聲明
 
-ChatFlow 是**第三方獨立開發的工具**，與 **WhatsApp、Meta Platforms, Inc. 及其關聯公司沒有任何隸屬、贊助或認可關係**。
+MsgRelay 是**第三方獨立開發的工具**，與 **WhatsApp、Meta Platforms, Inc. 及其關聯公司沒有任何隸屬、贊助或認可關係**。
 
 本產品通過開源項目 wacli（基於 whatsmeow 庫）使用 **WhatsApp Web 協議**，屬於非官方訪問方式。
 

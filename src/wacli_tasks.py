@@ -3,6 +3,8 @@
 Google Tasks integration for wacli.
 Reads extracted tasks from NLP engine and creates Google Tasks.
 """
+from __future__ import annotations
+
 import os
 import sys
 import json

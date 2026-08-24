@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 # =============================================================================
-#  ChatFlow — WhatsApp → Automation Workflows
+#  MsgRelay — WhatsApp → Automation Workflows
 #  One-shot installer
 #
 #  What it does:
 #    1. Downloads & installs the wacli binary (WhatsApp CLI, MIT license)
 #    2. Bootstraps the ~/.wacli directory layout
-#    3. Installs ChatFlow scripts (NLP engine, Calendar/Tasks sync, reports)
+#    3. Installs MsgRelay scripts (NLP engine, Calendar/Tasks sync, reports)
 #    4. Creates config.yaml + wacli_secrets.json templates
 #
 #  Usage:
@@ -112,7 +112,7 @@ main() {
     mkdir -p "$WACLI_HOME/accounts" "$WACLI_HOME/logs" "$WACLI_HOME/reports" "$SCRIPTS_DIR"
     ok "created $WACLI_HOME/{accounts,logs,reports,scripts}"
 
-    # 4. Copy ChatFlow scripts
+    # 4. Copy MsgRelay scripts
     SCRIPT_SRC="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/../src"
     if [ ! -d "$SCRIPT_SRC" ]; then
         # setup.sh may live in scripts/ next to src/
@@ -122,7 +122,7 @@ main() {
     cp "$SCRIPT_SRC"/wacli_*.py "$SCRIPTS_DIR/"
     cp -r "$SCRIPT_SRC/modules" "$SCRIPTS_DIR/" 2>/dev/null || true
     chmod +x "$SCRIPTS_DIR"/*.py 2>/dev/null || true
-    ok "installed ChatFlow scripts → $SCRIPTS_DIR"
+    ok "installed MsgRelay scripts → $SCRIPTS_DIR"
 
     # 5. Config template (do not overwrite existing)
     if [ ! -f "$WACLI_HOME/config.yaml" ]; then
@@ -171,7 +171,7 @@ JSON
     # ── Next steps ──
     echo ""
     echo "  ┌─────────────────────────────────────────────────────────┐"
-    echo "  │  🎉 ChatFlow installed! Next steps:                     │"
+    echo "  │  🎉 MsgRelay installed! Next steps:                     │"
     echo "  │                                                         │"
     echo "  │  1. Pair WhatsApp:                                      │"
     echo "  │       wacli --account personal pair                     │"
@@ -189,7 +189,7 @@ JSON
     echo "  │  Full guide: README.md                                  │"
     echo "  └─────────────────────────────────────────────────────────┘"
     echo ""
-    warn "ChatFlow is a third-party tool. Using WhatsApp's Web protocol"
+    warn "MsgRelay is a third-party tool. Using WhatsApp's Web protocol"
     warn "is subject to WhatsApp's Terms of Service — use at your own risk."
 }
 

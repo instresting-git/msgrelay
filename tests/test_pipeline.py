@@ -1,5 +1,5 @@
 """
-ChatFlow test suite — runs inside Docker (or locally).
+MsgRelay test suite — runs inside Docker (or locally).
 
 Covers:
   1. NLP engine: multi-language extraction, dates, times, confidence

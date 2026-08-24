@@ -1,19 +1,19 @@
 """
-Mock environment for ChatFlow tests.
+Mock environment for MsgRelay tests.
 
 Creates a realistic ~/.wacli layout in the container (or local machine):
   ~/.wacli/config.yaml
   ~/.wacli/accounts/{personal,work}/wacli.db   (mock WhatsApp message DB)
   ~/.wacli/scripts/wacli_secrets.json          (dummy credentials)
 
-Must run BEFORE importing any ChatFlow module so module-level config resolves.
+Must run BEFORE importing any MsgRelay module so module-level config resolves.
 """
 import os
 import json
 import sqlite3
 from datetime import datetime
 
-WACLI_HOME = os.path.expanduser("~/.wacli")
+WACLI_HOME = os.path.expanduser("~/.msgrelay-test")
 SCRIPTS_DIR = os.path.join(WACLI_HOME, "scripts")
 
 CONFIG_YAML = """# wacli multi-account configuration
@@ -113,8 +113,8 @@ def setup_mock_env():
     _create_db(os.path.join(WACLI_HOME, "accounts/personal/wacli.db"), SAMPLE_MESSAGES)
     _create_db(os.path.join(WACLI_HOME, "accounts/work/wacli.db"), [])
 
-    # Point CHATFLOW_HOME explicitly in case HOME differs
-    os.environ["CHATFLOW_HOME"] = WACLI_HOME
+    # Point MSGRELAY_HOME at the isolated test dir — never touch real ~/.wacli
+    os.environ["MSGRELAY_HOME"] = WACLI_HOME
     return WACLI_HOME
 
 

@@ -4,6 +4,8 @@ Google Calendar integration for wacli.
 Reads extracted events from NLP engine and creates Google Calendar events.
 Deduplicates to avoid creating the same event twice.
 """
+from __future__ import annotations
+
 import os
 import sys
 import json

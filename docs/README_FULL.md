@@ -1,4 +1,4 @@
-# ChatFlow 詳細配置指南
+# MsgRelay 詳細配置指南
 
 > 這是完整配置文檔。快速上手看根目錄的 `README.md`。
 
@@ -52,7 +52,7 @@ accounts:
     store: accounts/work
 ```
 
-> 任意數量的帳號都支持，ChatFlow 自動讀取。
+> 任意數量的帳號都支持，MsgRelay 自動讀取。
 
 ### wacli_secrets.json
 
@@ -72,9 +72,9 @@ accounts:
 
 | 變量 | 作用 | 默認 |
 |---|---|---|
-| `CHATFLOW_HOME` | 數據目錄 | `~/.wacli` |
-| `CHATFLOW_TZ` | 日曆事件時區 | `Asia/Hong_Kong` |
-| `CHATFLOW_LARK_USER_ID` | 飛書用戶 ID | secrets 讀取 |
+| `MSGRELAY_HOME` | 數據目錄 | `~/.wacli` |
+| `MSGRELAY_TZ` | 日曆事件時區 | `Asia/Hong_Kong` |
+| `MSGRELAY_LARK_USER_ID` | 飛書用戶 ID | secrets 讀取 |
 
 ---
 
@@ -99,7 +99,7 @@ accounts:
 
 ## 🔒 隱私與安全
 
-- **Local-first**：所有 WhatsApp 數據只存在你自己的機器上，ChatFlow 不收集、不上傳任何數據
+- **Local-first**：所有 WhatsApp 數據只存在你自己的機器上，MsgRelay 不收集、不上傳任何數據
 - **憑證保護**：所有密鑰存於 `wacli_secrets.json`（chmod 600），從不硬編碼
 - **去重機制**：消息處理有 checkpoint，日曆/任務有存在性檢查，不會重複創建
 - **自動清理**：默認保留 14 天歷史，減少敏感數據留存
@@ -111,7 +111,7 @@ accounts:
 ## ❓ 常見問題
 
 **Q: 我會被封號嗎？**
-ChatFlow 使用 WhatsApp Web 非官方協議（whatsmeow），理論上存在帳號受限風險。建議使用次要號碼或接受風險。詳細見 [DISCLAIMER.md](DISCLAIMER.md)。
+MsgRelay 使用 WhatsApp Web 非官方協議（whatsmeow），理論上存在帳號受限風險。建議使用次要號碼或接受風險。詳細見 [DISCLAIMER.md](DISCLAIMER.md)。
 
 **Q: 支持多少個 WhatsApp 帳號？**
 任意數量。在 config.yaml 中加帳號即可。
@@ -123,4 +123,4 @@ ChatFlow 使用 WhatsApp Web 非官方協議（whatsmeow），理論上存在帳
 所有提取都附置信度評分，日曆/任務同步的門檻是 0.65（`wacli_calendar.py` / `wacli_tasks.py` 中可調）。低置信度消息不會進入你的日曆。
 
 **Q: 我的數據會上傳到哪裡？**
-哪裡都不去。所有數據存儲在你自己機器上的 SQLite，ChatFlow 沒有任何雲端服務器。
+哪裡都不去。所有數據存儲在你自己機器上的 SQLite，MsgRelay 沒有任何雲端服務器。

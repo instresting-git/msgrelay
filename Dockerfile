@@ -1,8 +1,8 @@
-# ChatFlow — test image
+# MsgRelay — test image
 # Builds the product in a clean Linux environment and runs the full test suite.
 #
-#   docker build -t chatflow-test .
-#   docker run --rm chatflow-test
+#   docker build -t msgrelay-test .
+#   docker run --rm msgrelay-test
 
 FROM python:3.11-slim
 

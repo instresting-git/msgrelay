@@ -2,7 +2,7 @@
 """
 Lark User OAuth setup for Calendar access.
 Run once to authorize - opens browser for user consent.
-Saves user token to <CHATFLOW_HOME>/scripts/lark_user_token.json
+Saves user token to <MSGRELAY_HOME>/scripts/lark_user_token.json
 """
 import os
 import sys
