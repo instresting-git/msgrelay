@@ -152,7 +152,10 @@ YAML
   "smtp_password": "",
   "report_to": "",
   "discord_webhook_url": "",
-  "lark_user_id": ""
+  "lark_user_id": "",
+  "llm_api_key": "",
+  "llm_base_url": "",
+  "llm_model": ""
 }
 JSON
         chmod 600 "$SCRIPTS_DIR/wacli_secrets.json"

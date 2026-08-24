@@ -19,6 +19,8 @@ MsgRelay 是給**獨立開發者 / Freelancer / 小團隊**的 WhatsApp 自動�
 | 模塊 | 功能 |
 |---|---|
 | 🧠 **NLP 提取引擎** | 中 / 英 / 粵三語事件、任務、deadline 自動識別，附置信度評分 |
+| 🤖 **LLM 增強** *(可選)* | OpenAI 兼容 API（DeepSeek/Ollama/OpenAI）語義理解，正則引擎的升級替代 |
+| 🧬 **Auto-learn** | 從你的確認/忽略反饋中學習，個人化提取（few-shot + 模式懲罰） |
 | 📅 **Google Calendar 同步** | 自動創建日曆事件（含提醒），智能去重 |
 | ✅ **Google Tasks 同步** | 自動創建任務（含截止日期），智能去重 |
 | 📊 **日報 / 週報** | 每日/每週消息統計 + 關鍵內容摘要，推送到 Discord |
@@ -50,6 +52,35 @@ python3 ~/.wacli/scripts/wacli_reports.py --mode daily
 ```
 
 完整指南見 [README 詳細版](docs/README_FULL.md) 和 [macOS 排程指南](docs/launchd.md)。
+
+## 🤖 LLM 增強 + Auto-learn（可選）
+
+默認 MsgRelay 用本地正則引擎（零依賴、數據不出機器）。配置 LLM 後升級為語義理解：
+
+```bash
+# 方式 1：環境變量
+export MSGRELAY_LLM_API_KEY="sk-..."
+export MSGRELAY_LLM_BASE_URL="https://api.deepseek.com/v1"   # 或 Ollama 本地
+ export MSGRELAY_LLM_MODEL="deepseek-chat"
+
+# 方式 2：寫入 wacli_secrets.json（推薦）
+# "llm_api_key": "...", "llm_base_url": "...", "llm_model": "..."
+```
+
+**Auto-learn**：告訴 MsgRelay 哪些提取是對的/錯的，它會記住並調整：
+
+```bash
+# 標記某條消息的提取被確認（對了）
+python3 ~/.wacli/scripts/msgrelay_learn.py --feedback <msg_id> --action confirmed --type event --title "開會"
+
+# 標記被忽略（錯了）→ 下次同類不再提取 / LLM few-shot 學習
+python3 ~/.wacli/scripts/msgrelay_learn.py --feedback <msg_id> --action ignored --type event --title "今日天氣好好"
+
+# 查看學習狀態
+python3 ~/.wacli/scripts/msgrelay_learn.py --stats
+```
+
+> 🔒 **隱私**：LLM 功能默認關閉。開啟後，消息文本會發送給**你配置的 API 提供方**（用 Ollama 本地模型則數據不出機器）。詳見 [PRIVACY.md](docs/PRIVACY.md)。
 
 ## 🧠 NLP 引擎示例
 

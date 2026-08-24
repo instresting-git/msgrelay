@@ -20,7 +20,8 @@ from wacli_config import (
     get_google_credentials, load_processed, save_processed,
     TOKEN_FILE, SCRIPTS_DIR, get_accounts, TIMEZONE, EVENT_PREFIX
 )
-from wacli_nlp_extract import get_new_messages, analyze_message
+from wacli_nlp_extract import get_new_messages
+from msgrelay_extract import extract_all
 from google.auth.transport.requests import Request
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
@@ -142,6 +143,9 @@ def process_account(service, db_path: str, account_name: str, processed: dict):
     if not messages:
         return 0
 
+    # Unified extraction: rules + optional LLM + learned penalties
+    all_items = extract_all(messages)
+
     created = 0
     max_ts = since_ts
 
@@ -150,10 +154,7 @@ def process_account(service, db_path: str, account_name: str, processed: dict):
         if msg_id in processed.get(account_name, {}).get("calendar_msg_ids", {}):
             continue
 
-        items = analyze_message(
-            msg["text"], msg["sender"], msg["chat"],
-            msg_id, msg["ts"], bool(msg["from_me"]), msg["media_type"]
-        )
+        items = all_items.get(msg_id, [])
 
         for item in items:
             if item["type"] != "event" or item["confidence"] < 0.65:

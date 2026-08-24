@@ -76,6 +76,33 @@ accounts:
 | `MSGRELAY_TZ` | 日曆事件時區 | `Asia/Hong_Kong` |
 | `MSGRELAY_LARK_USER_ID` | 飛書用戶 ID | secrets 讀取 |
 
+### LLM 增強配置（可選，默認關閉）
+
+在 `wacli_secrets.json` 添加（或使用同名環境變量 `MSGRELAY_LLM_*`）：
+
+```json
+{
+  "llm_api_key": "sk-...",
+  "llm_base_url": "https://api.deepseek.com/v1",
+  "llm_model": "deepseek-chat"
+}
+```
+
+- 兼容任何 OpenAI Chat Completions API：OpenAI、DeepSeek、Ollama（`http://localhost:11434/v1`）、LM Studio 等
+- 配置後，`wacli_calendar.py` / `wacli_tasks.py` 自動使用 LLM 提取，失敗時自動回退規則引擎
+- 不配置 = 純規則引擎（零外部依賴）
+
+### Auto-learn（學習引擎）
+
+反饋存於 `<MSGRELAY_HOME>/scripts/msgrelay_learn.json`：
+
+| 命令 | 作用 |
+|---|---|
+| `--feedback <id> --action confirmed [--type] [--title]` | 標記提取正確 → 進入 LLM 正例庫 |
+| `--feedback <id> --action ignored [--type] [--title]` | 標記提取錯誤 → 進入反例庫 + 規則懲罰 |
+| `--stats` | 查看學習統計 |
+| `--reset` | 清空學習數據 |
+
 ---
 
 ## ⏰ 排程設置
