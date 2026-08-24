@@ -4,7 +4,7 @@
 
 ---
 
-## 🏗️ 架構
+## 架構
 
 ```
 WhatsApp  ──(wacli sync)──▶  本地 SQLite (~/.wacli/accounts/*/wacli.db)
@@ -31,7 +31,7 @@ WhatsApp  ──(wacli sync)──▶  本地 SQLite (~/.wacli/accounts/*/wacli.
 
 ---
 
-## ⚙️ 配置
+## 配置
 
 所有用戶特定配置集中在兩個文件：
 
@@ -124,7 +124,7 @@ accounts:
 
 ---
 
-## 🔒 隱私與安全
+## 隱私與安全
 
 - **Local-first**：所有 WhatsApp 數據只存在你自己的機器上，MsgRelay 不收集、不上傳任何數據
 - **憑證保護**：所有密鑰存於 `wacli_secrets.json`（chmod 600），從不硬編碼
@@ -135,7 +135,7 @@ accounts:
 
 ---
 
-## ❓ 常見問題
+## 常見問題
 
 **Q: 我會被封號嗎？**
 MsgRelay 使用 WhatsApp Web 非官方協議（whatsmeow），理論上存在帳號受限風險。建議使用次要號碼或接受風險。詳細見 [DISCLAIMER.md](DISCLAIMER.md)。

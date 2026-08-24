@@ -5,8 +5,8 @@
 **中 / 英 / 粵三語 NLP** · **Local-first（數據永不離開你的機器）** · **MIT 開源**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-green.svg)]()
-[![Tests](https://img.shields.io/badge/tests-20%2F20%20passing-brightgreen.svg)](tests/)
+[![Python 3.9+](https://img.shields.io/badge/Python-3.9%2B-green.svg)]()
+[![Tests](https://img.shields.io/badge/tests-38%2F38%20passing-brightgreen.svg)](tests/)
 
 MsgRelay 是給**獨立開發者 / Freelancer / 小團隊**的 WhatsApp 自動化集成層。它把散落在 WhatsApp 聊天裡的項目信息（會議時間、待辦事項、deadline、跟進事項）自動提取出來，變成結構化的日曆事件、任務清單和每日/每週報告。
 
@@ -14,22 +14,22 @@ MsgRelay 是給**獨立開發者 / Freelancer / 小團隊**的 WhatsApp 自動�
 
 ---
 
-## ✨ 功能一覽
+## 功能一覽
 
 | 模塊 | 功能 |
 |---|---|
-| 🧠 **NLP 提取引擎** | 中 / 英 / 粵三語事件、任務、deadline 自動識別，附置信度評分 |
-| 🤖 **LLM 增強** *(可選)* | OpenAI 兼容 API（DeepSeek/Ollama/OpenAI）語義理解，正則引擎的升級替代 |
-| 🧬 **Auto-learn** | 從你的確認/忽略反饋中學習，個人化提取（few-shot + 模式懲罰） |
-| 📅 **Google Calendar 同步** | 自動創建日曆事件（含提醒），智能去重 |
-| ✅ **Google Tasks 同步** | 自動創建任務（含截止日期），智能去重 |
-| 📊 **日報 / 週報** | 每日/每週消息統計 + 關鍵內容摘要，推送到 Discord |
-| 🔔 **統一通知** | 標準化 Discord 推送（5 分鐘去重窗口，防重複發送） |
-| 💼 **多帳號支持** | 任意數量的 WhatsApp 帳號，從 config.yaml 動態讀取 |
-| 🧹 **自動清理** | 保留 14 天消息歷史，自動清理（可配置） |
-| 🌐 **飛書集成** | Lark Calendar / Tasks / Bitable 同步（OAuth 全流程） |
+| **NLP 提取引擎** | 中 / 英 / 粵三語事件、任務、deadline 自動識別，附置信度評分 |
+| **LLM 增強** *(可選)* | OpenAI 兼容 API（DeepSeek/Ollama/OpenAI）語義理解，正則引擎的升級替代 |
+| **Auto-learn** | 從你的確認/忽略反饋中學習，個人化提取（few-shot + 模式懲罰） |
+| **Google Calendar 同步** | 自動創建日曆事件（含提醒），智能去重 |
+| **Google Tasks 同步** | 自動創建任務（含截止日期），智能去重 |
+| **日報 / 週報** | 每日/每週消息統計 + 關鍵內容摘要，推送到 Discord |
+| **統一通知** | 標準化 Discord 推送（5 分鐘去重窗口，防重複發送） |
+| **多帳號支持** | 任意數量的 WhatsApp 帳號，從 config.yaml 動態讀取 |
+| **自動清理** | 保留 14 天消息歷史，自動清理（可配置） |
+| **飛書集成** | Lark Calendar / Tasks / Bitable 同步（OAuth 全流程） |
 
-## 🚀 快速開始
+## 快速開始
 
 ```bash
 # 1. 克隆
@@ -53,7 +53,7 @@ python3 ~/.wacli/scripts/wacli_reports.py --mode daily
 
 完整指南見 [README 詳細版](docs/README_FULL.md) 和 [macOS 排程指南](docs/launchd.md)。
 
-## 🤖 LLM 增強 + Auto-learn（可選）
+## LLM 增強 + Auto-learn（可選）
 
 默認 MsgRelay 用本地正則引擎（零依賴、數據不出機器）。配置 LLM 後升級為語義理解：
 
@@ -61,7 +61,7 @@ python3 ~/.wacli/scripts/wacli_reports.py --mode daily
 # 方式 1：環境變量
 export MSGRELAY_LLM_API_KEY="sk-..."
 export MSGRELAY_LLM_BASE_URL="https://api.deepseek.com/v1"   # 或 Ollama 本地
- export MSGRELAY_LLM_MODEL="deepseek-chat"
+export MSGRELAY_LLM_MODEL="deepseek-chat"
 
 # 方式 2：寫入 wacli_secrets.json（推薦）
 # "llm_api_key": "...", "llm_base_url": "...", "llm_model": "..."
@@ -80,9 +80,9 @@ python3 ~/.wacli/scripts/msgrelay_learn.py --feedback <msg_id> --action ignored 
 python3 ~/.wacli/scripts/msgrelay_learn.py --stats
 ```
 
-> 🔒 **隱私**：LLM 功能默認關閉。開啟後，消息文本會發送給**你配置的 API 提供方**（用 Ollama 本地模型則數據不出機器）。詳見 [PRIVACY.md](docs/PRIVACY.md)。
+**隱私**：LLM 功能默認關閉。開啟後，消息文本會發送給**你配置的 API 提供方**（用 Ollama 本地模型則數據不出機器）。詳見 [PRIVACY.md](docs/PRIVACY.md)。
 
-## 🧠 NLP 引擎示例
+## NLP 引擎示例
 
 ```bash
 python3 src/wacli_nlp_extract.py
@@ -95,9 +95,9 @@ python3 src/wacli_nlp_extract.py
 [task]          (90%) 記得跟進個client個case
 ```
 
-## 🧪 測試
+## 測試
 
-20 個測試覆蓋 NLP 多語言、多帳號配置、DB 層、端到端集成、報告構建。可在 Docker 或本地運行：
+38 個測試覆蓋 NLP 多語言、LLM 提取、Auto-learn、多帳號配置、DB 層、端到端集成、報告構建。可在 Docker 或本地運行：
 
 ```bash
 docker build -t msgrelay-test . && docker run --rm msgrelay-test
@@ -105,32 +105,28 @@ docker build -t msgrelay-test . && docker run --rm msgrelay-test
 python -m unittest discover -s tests -v
 ```
 
-## 🤝 貢獻與需求
+## 貢獻與需求
 
 這個項目用 **GitHub Issues / Discussions 收集需求**——你的使用場景就是產品的路線圖：
 
-- 🐛 遇到 bug？[開 issue](https://github.com/instresting-git/msgrelay/issues/new)
-- 💡 想要新語言 / 新集成（Notion? Slack?）？[開 discussion](https://github.com/instresting-git/msgrelay/discussions)
-- 📝 想改進代碼？看 [CONTRIBUTING.md](CONTRIBUTING.md)
+- 遇到 bug？[開 issue](https://github.com/instresting-git/msgrelay/issues/new)
+- 想要新語言 / 新集成（Notion? Slack?）？[開 discussion](https://github.com/instresting-git/msgrelay/discussions)
+- 想改進代碼？看 [CONTRIBUTING.md](CONTRIBUTING.md)
 
-## ☕ 支持
+## 支持
 
-如果你覺得 MsgRelay 有用，可以：
+如果你覺得 MsgRelay 有用：
 
-- ⭐ 給 repo 一個 star（免費但很有用）
-- ☕ [在 GitHub Sponsors 上支持我](https://github.com/sponsors/KelvinOr)——開發者維護全靠愛發電，你的支持直接決定新功能的速度
+- 給 repo 一個 star（免費但很有用）
+- [在 GitHub Sponsors 上支持開發](https://github.com/sponsors/instresting-git)——支持直接決定新功能的速度
 
-## ⚠️ 免責聲明
+## 免責聲明
 
 - MsgRelay 是**第三方工具**，使用 WhatsApp Web 協議（whatsmeow），**與 WhatsApp / Meta 無關**
 - 使用非官方協議**可能違反 WhatsApp 服務條款**，存在帳號受限風險——請自行承擔
 - 詳細聲明見 [DISCLAIMER.md](docs/DISCLAIMER.md)
 
-## 📄 許可
+## 許可
 
 - MsgRelay：**MIT License**（見 [LICENSE](LICENSE)）
 - wacli：MIT License · whatsmeow：MPL-2.0（見 LICENSE 中的第三方聲明）
-
----
-
-*Made by a SOC engineer who got tired of losing project info in WhatsApp chats.*
