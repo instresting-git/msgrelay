@@ -1,0 +1,8 @@
+# Personal / secrets — never commit
+wacli_secrets.json
+google_token*.json
+lark_user_token.json
+*.lock
+.DS_Store
+__pycache__/
+*.pyc

@@ -1,0 +1,6 @@
+# ChatFlow — Python dependencies
+PyYAML>=6.0
+requests>=2.28
+google-auth>=2.23
+google-auth-oauthlib>=1.0
+google-api-python-client>=2.95
