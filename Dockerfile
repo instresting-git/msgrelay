@@ -15,6 +15,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Product code + tests
 COPY src/ ./src/
 COPY scripts/ ./scripts/
+COPY prompts/ ./prompts/
 COPY tests/ ./tests/
 COPY README.md LICENSE ./
 

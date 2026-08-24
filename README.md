@@ -111,6 +111,33 @@ python3 ~/.wacli/scripts/msgrelay_tracker.py --stats
 
 提取管線會自動給每個事件/任務附加優先級和分組（寫入 Google Calendar 描述 / Google Tasks 備註），任務創建時同步寫入本地追蹤器。
 
+## LLM Prompt 工作流（LLM-first 模式）
+
+`prompts/` 目錄包含 5 個完整的 LLM 工作流 prompt——這是「LLM 為主、規則兜底」的處理路徑：
+
+| Prompt | 用途 |
+|---|---|
+| `calendar-tasks.md` | **核心工作流**：新消息 → 判斷 → 動作列表（create_event/create_task/skip） |
+| `extract.md` | 批量提取（規則引擎的 LLM 升級層） |
+| `priority-learn.md` | sender 優先級學習（每日運行） |
+| `summarize.md` | 每日摘要生成 |
+| `weekly-report.md` | 週報生成 |
+
+執行方式：
+
+```bash
+# 完整處理工作流：消息 → 結構化動作 JSON
+python3 ~/.wacli/scripts/msgrelay_agent.py --run calendar-tasks --messages-file msgs.json
+
+# 每日摘要
+python3 ~/.wacli/scripts/msgrelay_agent.py --run summarize --messages-file msgs.json
+
+# 列出工作流
+python3 ~/.wacli/scripts/msgrelay_agent.py --list-workflows
+```
+
+Prompt 文件是純 Markdown，也可以直接複製到任何 LLM 工具 / agent 框架使用。
+
 ## NLP 引擎示例
 
 ```bash

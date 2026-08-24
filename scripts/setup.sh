@@ -120,7 +120,15 @@ main() {
     fi
     [ -d "$SCRIPT_SRC" ] || die "Cannot find src/ directory (looked at $SCRIPT_SRC)"
     cp "$SCRIPT_SRC"/wacli_*.py "$SCRIPTS_DIR/"
+    cp "$SCRIPT_SRC"/msgrelay_*.py "$SCRIPTS_DIR/" 2>/dev/null || true
     cp -r "$SCRIPT_SRC/modules" "$SCRIPTS_DIR/" 2>/dev/null || true
+    # LLM prompt workflows
+    PROMPT_SRC="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)/prompts"
+    if [ -d "$PROMPT_SRC" ]; then
+        mkdir -p "$SCRIPTS_DIR/prompts"
+        cp "$PROMPT_SRC"/*.md "$SCRIPTS_DIR/prompts/" 2>/dev/null || true
+        ok "installed LLM prompt workflows → $SCRIPTS_DIR/prompts"
+    fi
     chmod +x "$SCRIPTS_DIR"/*.py 2>/dev/null || true
     ok "installed MsgRelay scripts → $SCRIPTS_DIR"
 
