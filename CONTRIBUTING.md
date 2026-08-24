@@ -19,7 +19,7 @@
 
 ```bash
 # 1. Fork 並克隆
-git clone https://github.com/KelvinOr/msgrelay.git
+git clone https://github.com/instresting-git/msgrelay.git
 cd msgrelay
 
 # 2. 安裝依賴

@@ -33,7 +33,7 @@ MsgRelay 是給**獨立開發者 / Freelancer / 小團隊**的 WhatsApp 自動�
 
 ```bash
 # 1. 克隆
-git clone https://github.com/KelvinOr/msgrelay.git && cd msgrelay
+git clone https://github.com/instresting-git/msgrelay.git && cd msgrelay
 
 # 2. 一鍵安裝（下載 wacli + 安裝腳本 + 生成配置模板）
 bash scripts/setup.sh
@@ -109,8 +109,8 @@ python -m unittest discover -s tests -v
 
 這個項目用 **GitHub Issues / Discussions 收集需求**——你的使用場景就是產品的路線圖：
 
-- 🐛 遇到 bug？[開 issue](https://github.com/KelvinOr/msgrelay/issues/new)
-- 💡 想要新語言 / 新集成（Notion? Slack?）？[開 discussion](https://github.com/KelvinOr/msgrelay/discussions)
+- 🐛 遇到 bug？[開 issue](https://github.com/instresting-git/msgrelay/issues/new)
+- 💡 想要新語言 / 新集成（Notion? Slack?）？[開 discussion](https://github.com/instresting-git/msgrelay/discussions)
 - 📝 想改進代碼？看 [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## ☕ 支持
